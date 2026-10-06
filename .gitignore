@@ -1,0 +1,9 @@
+node_modules/
+out/
+dist/
+release/
+*.log
+.DS_Store
+# client media / project data never goes in the repo
+chop-project*.json
+exports/

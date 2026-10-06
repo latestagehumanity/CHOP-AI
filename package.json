@@ -1,0 +1,47 @@
+{
+  "name": "chop-ai",
+  "productName": "Chop AI",
+  "version": "0.1.0",
+  "description": "Turns interview transcripts and Premiere XMLs into client transcripts, paper edits and punch-in selects sequences, using Claude.",
+  "main": "./out/main/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "chop": "tsx src/cli/chop.ts",
+    "dist:mac": "electron-vite build && electron-builder --mac",
+    "dist:win": "electron-vite build && electron-builder --win"
+  },
+  "build": {
+    "appId": "studio.olichen.chopai",
+    "productName": "Chop AI",
+    "files": [
+      "out/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.video"
+    }
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "@xmldom/xmldom": "^0.9.12",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.7",
+    "vitest": "^5.0.3"
+  }
+}
