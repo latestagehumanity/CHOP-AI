@@ -70,7 +70,8 @@ function readClip(c: XElement): SourceClip {
 const isWav = (name: string) => /\.(wav|bwf|aif|aiff)$/i.test(name);
 
 export function parsePremiereXml(xml: string): SourceSequence {
-  const doc = new DOMParser().parseFromString(xml, "text/xml");
+  // Some Premiere exports start with a UTF-8 byte-order mark, which xmldom rejects.
+  const doc = new DOMParser().parseFromString(xml.replace(/^﻿/, ""), "text/xml");
   const root = doc.documentElement as unknown as XElement;
   const seq = kid(root, "sequence") ?? (root.getElementsByTagName("sequence")[0] as unknown as XElement);
   if (!seq) throw new Error("No <sequence> found — is this a Premiere XML (xmeml) export?");

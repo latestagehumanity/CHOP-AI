@@ -52,6 +52,9 @@ describe("premiere xml", () => {
     expect([...src.files.keys()].sort()).toEqual(["file-1", "file-2", "file-3"]);
     expect(src.width).toBe(3840);
   });
+  it("accepts exports that start with a UTF-8 byte-order mark", () => {
+    expect(parsePremiereXml("\uFEFF" + XML).video).toHaveLength(2);
+  });
 });
 
 describe("checkSelects", () => {
